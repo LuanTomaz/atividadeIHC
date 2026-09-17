@@ -4,124 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Atlas Local</title>
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .seed-button.action-buy,
+    .seed-button.action-install { background: #5d9b77; }
+    .seed-button.action-remove { background: #e47763; }
+    .seed-button.action-buy img,
+    .seed-button.action-install img { display: block; margin: auto; object-fit: contain; filter: brightness(0) saturate(100%); }
+  </style>
 </head>
 <body>
-  <main class="workbench" aria-label="Biblioteca visual de jogos offline">
+  <main class="atlas" aria-label="Arquivo visual de jogos">
     <header class="masthead">
-      <div class="identity">
-        <span class="seed-mark" aria-hidden="true"></span>
-        <div>
-          <p class="kicker">ARQUIVO DE JOGOS // 09</p>
-            <h1>Atlas Local</h1>
-        </div>
+      <a class="brand" href="#library" aria-label="Retornar ao Atlas Local"><span class="brand-seed">✦</span><span>ATLAS<br><b>LOCAL</b></span></a>
+      <div class="header-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="control-garden" aria-label="Controles visuais">
+        <button class="glyph glyph-library active" data-view="library" aria-label="Abrir biblioteca"><img src="assets/icons8-relax-50.png" alt="" width="28" height="28" style="display:block;margin:auto;object-fit:contain"></button>
+        <button class="glyph glyph-store" data-view="store" aria-label="Abrir catálogo"><img src="assets/icons8-forest-64.png" alt="" width="28" height="28" style="display:block;margin:auto;object-fit:contain"></button>
+        <button class="glyph glyph-create" id="openAddGame" aria-label="Criar nova entrada"><img src="assets/icons8-hand-planting-48.png" alt="" width="27" height="27" style="display:block;margin:auto;object-fit:contain"></button>
+        <button class="glyph glyph-search" id="toggleSearch" aria-label="Revelar busca"><img src="assets/icons8-quest-64.png" alt="" width="28" height="28" style="display:block;margin:auto;object-fit:contain"></button>
+        <button class="glyph glyph-filter" id="cycleFilter" aria-label="Mudar filtro"><img src="assets/icons8-multicast-48.png" alt="" width="28" height="28" style="display:block;margin:auto;object-fit:contain"></button>
       </div>
-      <div class="readout" aria-live="polite">
-        <span class="readout-dot"></span>
-        <span id="message">ambiente estável</span>
-      </div>
+      <div class="pulse-readout"><span></span><strong id="message">arquivo em repouso</strong></div>
     </header>
 
-    <section class="library-tools" aria-label="Organização da biblioteca">
-      <button class="initial-filter" data-action="filter" aria-label="Filtrar biblioteca">
-        <span class="filter-shape"><img src="assets/filter-pointer.svg?v=1" alt=""></span>
-      </button>
-    </section>
-    <section class="filter-menu is-hidden" aria-label="Opções de filtro">
-      <button class="filter-option active" data-filter="all" aria-label="Mostrar todos os jogos"><span class="filter-all-shape"></span></button>
-      <button class="filter-option" data-filter="explore" aria-label="Mostrar jogos de exploração"><span class="filter-explore-shape"></span></button>
-      <button class="filter-option" data-filter="puzzle" aria-label="Mostrar jogos de puzzle"><span class="filter-puzzle-shape"></span></button>
-      <button class="filter-option" data-filter="race" aria-label="Mostrar jogos de corrida"><span class="filter-race-shape"></span></button>
-      <button class="filter-option" data-filter="installed" aria-label="Mostrar jogos instalados"><span class="filter-installed-shape"></span></button>
+    <section class="intro">
+      <div><p class="coordinate">ESTAÇÃO 04 / CAMADA 09</p><h1 id="viewTitle">Sementes<br><em>em repouso.</em></h1><p id="viewDescription">Um pequeno arquivo para cultivar, reunir e revisitar mundos digitais.</p></div>
+      <div class="growth-readout"><b id="libraryCount">0</b><span>fragmentos<br>vivos</span></div>
     </section>
 
-    <section class="greenhouse" aria-label="Biblioteca de jogos">
-      <div class="glass-panel panel-left"></div>
-      <div class="glass-panel panel-right"></div>
-      <div class="sunbeam beam-one"></div>
-      <div class="sunbeam beam-two"></div>
-      <div class="horizon"></div>
-      <div class="soil">
-        <span class="soil-line line-one"></span>
-        <span class="soil-line line-two"></span>
-        <span class="soil-line line-three"></span>
-      </div>
-      <div class="library-grid" id="libraryGrid">
-        <article class="game-card game-a" data-game="Vértice" data-genre="explore" data-installed="true">
-          <div class="game-art art-a"><span></span><i></i></div><div class="game-meta"><strong>VÉRTICE</strong><small>exploração orbital</small></div>
-        </article>
-        <article class="game-card game-b" data-game="Névoa" data-genre="puzzle" data-installed="false">
-          <div class="game-art art-b"><span></span><i></i></div><div class="game-meta"><strong>NÉVOA</strong><small>puzzle atmosférico</small></div>
-        </article>
-        <article class="game-card game-c" data-game="Rastro" data-genre="race" data-installed="true">
-          <div class="game-art art-c"><span></span><i></i></div><div class="game-meta"><strong>RASTRO</strong><small>corrida noturna</small></div>
-        </article>
-        <article class="game-card game-d" data-game="Orbe" data-genre="explore" data-installed="false">
-          <div class="game-art art-d"><span></span><i></i></div><div class="game-meta"><strong>ORBE</strong><small>jardim gravitacional</small></div>
-        </article>
-      </div>
-      <div class="growth-ring ring-one"></div>
-      <div class="growth-ring ring-two"></div>
-      <div class="growth-ring ring-three"></div>
-      <div class="floating-particle particle-one"></div>
-      <div class="floating-particle particle-two"></div>
-      <div class="floating-particle particle-three"></div>
-      <span class="coordinate coordinate-one">04 / 09</span>
-      <span class="coordinate coordinate-two">LOCAL</span>
+    <section class="search-lens is-hidden" id="searchPanel"><span class="lens-mark"></span><input id="searchInput" type="search" placeholder="Digite para rastrear uma semente" aria-label="Buscar jogos"><button id="closeSearch" aria-label="Fechar busca">×</button></section>
+    <section class="filter-ribbon" aria-live="polite"><span class="ribbon-dot"></span><span id="filterReadout">campo inteiro</span><span class="ribbon-line"></span><span id="storageReadout">0 GB</span></section>
+
+    <section class="greenhouse" aria-label="Campo de jogos">
+      <div class="glass-line glass-line-a"></div><div class="glass-line glass-line-b"></div><div class="sun-disc"></div><div class="soil-bed"></div>
+      <div class="game-grid" id="gameGrid"></div>
+      <div class="field-ring ring-a"></div><div class="field-ring ring-b"></div><div class="field-ring ring-c"></div>
+      <div class="field-particle particle-a"></div><div class="field-particle particle-b"></div><div class="field-particle particle-c"></div>
     </section>
 
-    <section class="detail-view is-hidden" aria-label="Detalhes do jogo selecionado">
-      <button class="back-button" data-nav="back" aria-label="Voltar para a biblioteca">
-        <span class="back-shape"><img src="assets/return-door.svg" alt=""></span>
-      </button>
-      <div class="detail-art" id="detailArt"></div>
-      <div class="detail-copy">
-        <span>sessão selecionada</span>
-        <h2 id="detailName">Jogo</h2>
-        <p id="detailType">categoria</p>
-      </div>
-    </section>
-
-    <section class="instrument-panel is-hidden" aria-label="Controles da biblioteca">
-      <div class="selection-preview" aria-live="polite">
-        <div class="preview-art"></div>
-        <div class="preview-copy"><span>selecionado</span><strong id="previewName">nenhum jogo</strong><small id="previewType">aguardando escolha</small></div>
-      </div>
-      <div class="panel-label">
-        <span class="pulse"></span>
-        <span>arquivo vivo</span>
-      </div>
-      <div class="instruments">
-        <button class="instrument instrument-install" data-action="install" aria-label="Instalar jogo">
-          <span class="install-shape"><img src="assets/install-concrete.svg?v=3" alt=""></span>
-          <span class="instrument-line"></span>
-        </button>
-        <button class="instrument instrument-pause" data-action="pause" aria-label="Pausar ou continuar instalação">
-          <span class="pause-shape"><img src="assets/hand-stop.svg?v=1" alt=""></span>
-          <span class="instrument-line"></span>
-        </button>
-        <button class="instrument instrument-launch" data-action="launch" aria-label="Iniciar jogo">
-          <span class="launch-shape"><img src="assets/launch-concrete.svg?v=3" alt=""></span>
-          <span class="instrument-line"></span>
-        </button>
-        <button class="instrument instrument-remove" data-action="remove" aria-label="Desinstalar jogo">
-          <span class="remove-shape"><img src="assets/remove-concrete.svg?v=3" alt=""></span>
-          <span class="instrument-line"></span>
-        </button>
-      </div>
-      <div class="meter" aria-label="Progresso da instalação">
-        <span class="meter-caption">progresso</span>
-        <span class="meter-track"><span id="meterFill"></span></span>
-        <span id="meterValue">72</span>
-      </div>
-    </section>
-
-    <footer class="footer-note">
-      <span>mesa experimental</span>
-      <span class="footer-mark">● ◌ ●</span>
-      <span>arquivo 01 / offline</span>
-    </footer>
+    <footer><span>ATLAS LOCAL / REGISTRO OFFLINE</span><span class="footer-glyphs">◌　✦　◌</span><span id="ownedReadout">0 adquiridos</span></footer>
   </main>
+
+  <dialog class="game-dialog" id="gameDialog"><form id="gameForm" method="dialog">
+    <button class="close-button" type="button" id="closeDialog" aria-label="Fechar formulário"><i style="display:block;width:18px;height:3px;background:currentColor;transform:rotate(45deg)"></i></button><p class="coordinate">NOVA SEMENTE / REGISTRO MANUAL</p><img class="planting-icon" src="assets/icons8-hand-planting-48.png" alt="" width="48" height="48"><p class="dialog-intro">A capa escolhida e os dados ficam somente neste dispositivo.</p>
+    <label class="image-drop" for="gameImage"><span id="imagePreview">＋<small>capa</small></span><input id="gameImage" type="file" accept="image/*"></label>
+    <div class="form-grid"><label>Título<input id="gameTitle" required maxlength="40" placeholder="Nome do jogo"></label><label>Gênero<select id="gameGenre"><option value="explore">Exploração</option><option value="puzzle">Puzzle</option><option value="race">Corrida</option></select></label><label>Descrição<input id="gameDescription" required maxlength="60" placeholder="Uma breve descrição"></label><label>Tamanho<input id="gameSize" type="number" min="1" max="999" value="12" required><span class="unit">GB</span></label></div>
+    <button class="plant-button" type="submit" aria-label="Confirmar nova entrada"><img src="assets/icons8-hand-planting-48.png" alt="" width="32" height="32"></button>
+  </form></dialog>
+  <div class="toast" id="toast" role="status"></div>
   <script src="script.js"></script>
 </body>
 </html>
